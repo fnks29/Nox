@@ -1,0 +1,108 @@
+:root {
+    /* Cores principais */
+    --primary-dark: #1a2a3a;
+    --primary-darker: #0a1a2a;
+    --accent-color: #4CAF50;
+    --text-primary: white;
+    --text-secondary: #cccccc;
+    --text-disabled: #aaaaaa;
+    
+    /* Cores de fundo */
+    --background-gradient: linear-gradient(to bottom, var(--primary-dark), var(--primary-darker));
+    --nav-background: #0a1525;
+    --control-background: rgba(255, 255, 255, 0.12);
+}
+
+/* Estilos globais */
+.root {
+    -fx-background-color: var(--background-gradient);
+    -fx-font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* Botões */
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: var(--text-secondary);
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-text-fill: var(--text-primary);
+}
+
+.button.accent {
+    -fx-background-color: var(--accent-color);
+    -fx-text-fill: var(--text-primary);
+}
+
+/* Campos de texto */
+.text-field {
+    -fx-background-color: var(--control-background);
+    -fx-text-fill: var(--text-primary);
+    -fx-prompt-text-fill: var(--text-disabled);
+}
+
+/* Controles do player */
+.slider .track {
+    -fx-background-color: var(--control-background);
+}
+
+.slider .thumb {
+    -fx-background-color: var(--accent-color);
+}
+
+/* Tabs */
+.tab-pane {
+    -fx-background-color: transparent;
+}
+
+.tab {
+    -fx-background-color: transparent;
+    -fx-text-fill: var(--text-secondary);
+}
+
+.tab:selected {
+    -fx-text-fill: var(--accent-color);
+}
+
+/* ScrollPane */
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-background-color: var(--control-background);
+    -fx-text-fill: var(--text-primary);
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: var(--text-primary);
+}
+
+/* TitledPane */
+.titled-pane {
+    -fx-text-fill: var(--text-primary);
+}
+
+.titled-pane > .title {
+    -fx-background-color: var(--control-background);
+}
+
+/* CheckBox */
+.check-box {
+    -fx-text-fill: var(--text-primary);
+}
+
+.check-box .box {
+    -fx-background-color: var(--control-background);
+}
+
+.check-box:selected .mark {
+    -fx-background-color: var(--accent-color);
+}

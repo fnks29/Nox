@@ -1,0 +1,103 @@
+.home-view {
+    -fx-background-color: #121212;
+}
+
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.content-stack {
+    -fx-background-color: transparent;
+}
+
+.parallax-background {
+    -fx-background-image: url('/images/background.svg');
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-effect: blur(5px);
+    -fx-opacity: 0.3;
+}
+
+.main-content {
+    -fx-padding: 20;
+    -fx-spacing: 20;
+}
+
+.app-bar {
+    -fx-background-color: rgba(18, 18, 18, 0.95);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+}
+
+.app-title {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.menu-icon {
+    -fx-fill: white;
+    -fx-font-size: 24px;
+}
+
+.books-grid {
+    -fx-padding: 20;
+    -fx-hgap: 20;
+    -fx-vgap: 20;
+}
+
+.book-card {
+    -fx-background-color: #1E1E1E;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+    -fx-padding: 15;
+}
+
+.floating-player {
+    -fx-background-color: rgba(30, 30, 30, 0.95);
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+    -fx-padding: 15;
+    -fx-alignment: center;
+}
+
+.player-control {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-padding: 10;
+}
+
+.player-control:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.progress-slider .track {
+    -fx-background-color: #404040;
+}
+
+.progress-slider .thumb {
+    -fx-background-color: white;
+}
+
+/* Responsividade */
+@media (max-width: 600) {
+    .main-content {
+        -fx-padding: 10;
+    }
+    
+    .books-grid {
+        -fx-padding: 10;
+        -fx-hgap: 10;
+        -fx-vgap: 10;
+    }
+    
+    .floating-player {
+        -fx-padding: 10;
+    }
+}

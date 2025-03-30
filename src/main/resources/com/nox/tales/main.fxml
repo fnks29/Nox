@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.*?>
+
+<?import java.net.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.nox.tales.MainController">
+    
+    <stylesheets>
+        <URL value="@styles.css"/>
+    </stylesheets>
+    
+    <!-- Menu Lateral (Drawer) -->
+    <left>
+        <VBox fx:id="drawer" styleClass="drawer" prefWidth="250" visible="false">
+            <Button text="Biblioteca" styleClass="drawer-item" onAction="#handleLibraryButton"/>
+            <Button text="Explorar" styleClass="drawer-item" onAction="#handleExploreButton"/>
+            <Button text="Histórico" styleClass="drawer-item" onAction="#handleHistoryButton"/>
+            <Button text="Narradores" styleClass="drawer-item" onAction="#handleNarratorsButton"/>
+            <Button text="Configurações" styleClass="drawer-item" onAction="#handleSettingsButton"/>
+            <Button text="Suporte" styleClass="drawer-item" onAction="#handleSupportButton"/>
+        </VBox>
+    </left>
+    
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;">
+            <VBox alignment="CENTER" spacing="30">
+                <!-- Seção de Boas-vindas -->
+                <VBox alignment="CENTER" spacing="20" style="-fx-padding: 50 20 30 20;">
+                    <ImageView fitWidth="200" fitHeight="200" preserveRatio="true">
+                        <Image url="@/images/logo.png"/>
+                        <effect>
+                            <DropShadow color="#00000080" radius="10" spread="0.2"/>
+                        </effect>
+                    </ImageView>
+                    
+                    <Label fx:id="label" text="Bem-vindo ao NoxTales!" 
+                           style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: white;" />
+                    
+                    <Label text="Sua experiência inovadora em audiobooks" 
+                           style="-fx-font-size: 16; -fx-text-fill: #cccccc;" />
+                    
+                    <!-- Botões principais -->
+                    <VBox spacing="15" alignment="CENTER" style="-fx-padding: 20 0 40 0;">
+                        <Button fx:id="startButton" text="Explorar Audiobooks" 
+                                onAction="#handleExploreButton" styleClass="primary-button"
+                                prefWidth="250" prefHeight="50"/>
+                        
+                        <Button text="Minha Biblioteca" onAction="#handleLibraryButton"
+                                styleClass="secondary-button" prefWidth="250" prefHeight="50"/>
+                    </VBox>
+                </VBox>
+                
+                <!-- Galeria de Audiobooks -->
+                <VBox spacing="20" style="-fx-padding: 0 20 30 20;">
+                    <Label text="Audiobooks em Destaque" 
+                           style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: white;" />
+                    
+                    <FlowPane fx:id="bookGallery" hgap="20" vgap="20" alignment="CENTER">
+                        <!-- Os audiobooks serão adicionados dinamicamente aqui -->
+                    </FlowPane>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+    
+    <top>
+        <!-- Barra superior com botão do menu -->
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color: #0a1525;">
+            <Button fx:id="menuButton" text="☰" onAction="#handleMenuButton"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 20;"/>
+            <Label text="NoxTales" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: white; -fx-padding: 0 0 0 15;"/>
+        </HBox>
+    </top>
+    
+</BorderPane>

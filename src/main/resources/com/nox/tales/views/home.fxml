@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.*?>
+<?import com.gluonhq.charm.glisten.control.*?>
+<?import com.gluonhq.charm.glisten.mvc.View?>
+
+<View fx:controller="com.nox.tales.controllers.HomeController" 
+      xmlns:fx="http://javafx.com/fxml" styleClass="home-view">
+    <ScrollPane fitToWidth="true" styleClass="scroll-pane">
+        <StackPane styleClass="content-stack">
+            <!-- Camada de Parallax Background -->
+            <StackPane styleClass="parallax-background" />
+            
+            <!-- Conteúdo Principal -->
+            <VBox spacing="20" styleClass="main-content">
+                <!-- Cabeçalho -->
+                <AppBar styleClass="app-bar">
+                    <title>
+                        <Label text="NoxTales" styleClass="app-title"/>
+                    </title>
+                    <actionItems>
+                        <MaterialDesignIconView glyphName="MENU" styleClass="menu-icon"/>
+                    </actionItems>
+                </AppBar>
+                
+                <!-- Grid de Audiobooks -->
+                <GridPane hgap="10" vgap="10" styleClass="books-grid">
+                    <!-- Os items serão adicionados dinamicamente -->
+                </GridPane>
+                
+                <!-- Player Flutuante -->
+                <StackPane styleClass="floating-player">
+                    <HBox spacing="10" alignment="CENTER">
+                        <Button styleClass="player-control" text="⏮"/>
+                        <Button styleClass="player-control" text="⏯"/>
+                        <Button styleClass="player-control" text="⏭"/>
+                        <Slider styleClass="progress-slider"/>
+                    </HBox>
+                </StackPane>
+            </VBox>
+        </StackPane>
+    </ScrollPane>
+</View>

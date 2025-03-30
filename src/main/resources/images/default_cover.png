@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="coverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1a2a3a;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#0a1a2a;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <rect width="300" height="300" fill="url(#coverGrad)" rx="15" ry="15" />
+    <circle cx="150" cy="120" r="50" fill="#ffffff20" />
+    <path d="M150 190 Q 150 190 150 190" stroke="#ffffff20" stroke-width="2" fill="none" />
+    <text x="150" y="250" font-family="Arial" font-size="24" fill="#ffffff60" text-anchor="middle">Capa do Audiobook</text>
+</svg>

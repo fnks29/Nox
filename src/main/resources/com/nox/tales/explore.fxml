@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.nox.tales.controllers.ExploreController"
+           style="-fx-background-color: linear-gradient(to bottom, #1a2a3a, #0a1a2a);">
+    
+    <top>
+        <VBox spacing="10" style="-fx-padding: 15;">
+            <Label text="Explorar Audiobooks" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            
+            <!-- Barra de pesquisa -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="searchField" promptText="Buscar audiobooks..." HBox.hgrow="ALWAYS"
+                           style="-fx-background-color: #ffffff20; -fx-text-fill: white; -fx-prompt-text-fill: #aaaaaa;"/>
+                <Button text="🔍" onAction="#handleSearch" 
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+            </HBox>
+            
+            <!-- Filtros -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Filtrar por:" style="-fx-text-fill: white;"/>
+                <ComboBox fx:id="categoryFilter" promptText="Categoria" prefWidth="120"/>
+                <ComboBox fx:id="authorFilter" promptText="Autor" prefWidth="120"/>
+                <ComboBox fx:id="narratorFilter" promptText="Narrador" prefWidth="120"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;">
+            <VBox spacing="20" style="-fx-padding: 15;">
+                
+                <!-- Carrossel de Destaques -->
+                <VBox spacing="10">
+                    <Label text="Destaques" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <HBox fx:id="featuredCarousel" spacing="15" style="-fx-padding: 10;">
+                        <!-- Itens do carrossel serão adicionados dinamicamente -->
+                        <VBox styleClass="featured-item" style="-fx-background-color: #ffffff10; -fx-background-radius: 10;">
+                            <ImageView fitWidth="180" fitHeight="250" preserveRatio="true">
+                                <Image url="@/images/book1.png"/>
+                            </ImageView>
+                            <VBox spacing="5" style="-fx-padding: 10;">
+                                <Label text="O Senhor dos Anéis" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                                <Label text="J.R.R. Tolkien" style="-fx-font-size: 12; -fx-text-fill: #cccccc;"/>
+                            </VBox>
+                        </VBox>
+                    </HBox>
+                </VBox>
+                
+                <!-- Recomendados para Você -->
+                <VBox spacing="10">
+                    <Label text="Recomendados para Você" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <FlowPane fx:id="recommendedGrid" hgap="15" vgap="15">
+                        <!-- Itens recomendados serão adicionados dinamicamente -->
+                    </FlowPane>
+                </VBox>
+                
+                <!-- Mais Populares -->
+                <VBox spacing="10">
+                    <Label text="Mais Populares" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <FlowPane fx:id="popularGrid" hgap="15" vgap="15">
+                        <!-- Itens populares serão adicionados dinamicamente -->
+                    </FlowPane>
+                </VBox>
+                
+                <!-- Narradores em Destaque -->
+                <VBox spacing="10">
+                    <Label text="Narradores em Destaque" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    <HBox fx:id="narratorsCarousel" spacing="15">
+                        <!-- Narradores serão adicionados dinamicamente -->
+                    </HBox>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+    
+    <bottom>
+        <!-- Menu de Navegação Inferior -->
+        <HBox alignment="CENTER" spacing="40" style="-fx-padding: 15; -fx-background-color: #0a1525;">
+            <Button text="Biblioteca" onAction="#navigateToLibrary" 
+                    style="-fx-background-color: transparent; -fx-text-fill: #aaaaaa;"/>
+            <Button text="Explorar" onAction="#navigateToExplore" 
+                    style="-fx-background-color: transparent; -fx-text-fill: #4CAF50;"/>
+            <Button text="Narradores" onAction="#navigateToNarrators" 
+                    style="-fx-background-color: transparent; -fx-text-fill: #aaaaaa;"/>
+            <Button text="Configurações" onAction="#navigateToSettings" 
+                    style="-fx-background-color: transparent; -fx-text-fill: #aaaaaa;"/>
+        </HBox>
+    </bottom>
+    
+</BorderPane>

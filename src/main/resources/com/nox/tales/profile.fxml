@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.nox.tales.controllers.ProfileController"
+           style="-fx-background-color: linear-gradient(to bottom, #1a2a3a, #0a1a2a);">
+    
+    <top>
+        <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20;">
+            <!-- Foto de perfil do usuário -->
+            <StackPane>
+                <Circle fx:id="profilePhotoCircle" radius="50" fill="#cccccc"/>
+                <ImageView fx:id="profilePhoto" fitWidth="100" fitHeight="100" preserveRatio="true"/>
+            </StackPane>
+            
+            <!-- Nome do usuário -->
+            <Label fx:id="usernameLabel" text="Nome do Usuário" 
+                   style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            
+            <!-- Email -->
+            <Label fx:id="emailLabel" text="usuario@email.com" 
+                   style="-fx-font-size: 14; -fx-text-fill: #cccccc;"/>
+            
+            <!-- Estatísticas -->
+            <HBox spacing="30" alignment="CENTER">
+                <VBox alignment="CENTER">
+                    <Label fx:id="booksCountLabel" text="0" 
+                           style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #4CAF50;"/>
+                    <Label text="Audiobooks" style="-fx-text-fill: white;"/>
+                </VBox>
+                
+                <VBox alignment="CENTER">
+                    <Label fx:id="hoursLabel" text="0h" 
+                           style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #4CAF50;"/>
+                    <Label text="Horas ouvidas" style="-fx-text-fill: white;"/>
+                </VBox>
+                
+                <VBox alignment="CENTER">
+                    <Label fx:id="favoritesLabel" text="0" 
+                           style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #4CAF50;"/>
+                    <Label text="Favoritos" style="-fx-text-fill: white;"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <center>
+        <TabPane style="-fx-background-color: transparent;">
+            <tabs>
+                <!-- Aba de Audiobooks Recentes -->
+                <Tab text="Recentes" closable="false">
+                    <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;">
+                        <VBox fx:id="recentBooksContainer" spacing="10" style="-fx-padding: 15;">
+                            <!-- Os audiobooks recentes serão adicionados dinamicamente -->
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+                
+                <!-- Aba de Preferências -->
+                <Tab text="Preferências" closable="false">
+                    <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;">
+                        <VBox spacing="15" style="-fx-padding: 15;">
+                            <!-- Preferências de Narração -->
+                            <TitledPane text="Preferências de Narração" expanded="true">
+                                <VBox spacing="10">
+                                    <!-- Velocidade padrão -->
+                                    <HBox alignment="CENTER_LEFT" spacing="10">
+                                        <Label text="Velocidade padrão:" style="-fx-text-fill: white;"/>
+                                        <ComboBox fx:id="defaultSpeedComboBox" prefWidth="100">
+                                            <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                    <String fx:value="0.5x"/>
+                                                    <String fx:value="1.0x"/>
+                                                    <String fx:value="1.5x"/>
+                                                    <String fx:value="2.0x"/>
+                                                </FXCollections>
+                                            </items>
+                                        </ComboBox>
+                                    </HBox>
+                                    
+                                    <!-- Narrador preferido -->
+                                    <HBox alignment="CENTER_LEFT" spacing="10">
+                                        <Label text="Narrador preferido:" style="-fx-text-fill: white;"/>
+                                        <ComboBox fx:id="defaultNarratorComboBox" prefWidth="150"/>
+                                    </HBox>
+                                    
+                                    <!-- Mostrar transcrição -->
+                                    <CheckBox fx:id="showTranscriptionCheckbox" text="Mostrar transcrição durante a reprodução" 
+                                              style="-fx-text-fill: white;"/>
+                                </VBox>
+                            </TitledPane>
+                            
+                            <!-- Preferências de Tema -->
+                            <TitledPane text="Tema e Aparência" expanded="true">
+                                <VBox spacing="10">
+                                    <!-- Tema escuro/claro -->
+                                    <HBox alignment="CENTER_LEFT" spacing="10">
+                                        <Label text="Tema:" style="-fx-text-fill: white;"/>
+                                        <ToggleButton fx:id="darkModeToggle" text="Modo Escuro" selected="true"/>
+                                    </HBox>
+                                    
+                                    <!-- Tamanho da fonte -->
+                                    <HBox alignment="CENTER_LEFT" spacing="10">
+                                        <Label text="Tamanho da fonte:" style="-fx-text-fill: white;"/>
+                                        <Slider fx:id="fontSizeSlider" min="12" max="24" value="16" 
+                                                showTickMarks="true" showTickLabels="true" majorTickUnit="4" minorTickCount="3"/>
+                                    </HBox>
+                                </VBox>
+                            </TitledPane>
+                            
+                            <!-- Sincronização -->
+                            <TitledPane text="Sincronização e Armazenamento" expanded="true">
+                                <VBox spacing="10">
+                                    <!-- Sincronização automática -->
+                                    <CheckBox fx:id="autoSyncCheckbox" text="Sincronizar automaticamente com a nuvem" 
+                                              selected="true" style="-fx-text-fill: white;"/>
+                                    
+                                    <!-- Download automático -->
+                                    <CheckBox fx:id="autoDownloadCheckbox" text="Baixar automaticamente para modo offline" 
+                                              style="-fx-text-fill: white;"/>
+                                    
+                                    <!-- Qualidade de áudio -->
+                                    <HBox alignment="CENTER_LEFT" spacing="10">
+                                        <Label text="Qualidade de áudio:" style="-fx-text-fill: white;"/>
+                                        <ComboBox fx:id="audioQualityComboBox" prefWidth="120">
+                                            <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                    <String fx:value="Baixa"/>
+                                                    <String fx:value="Média"/>
+                                                    <String fx:value="Alta"/>
+                                                </FXCollections>
+                                            </items>
+                                        </ComboBox>
+                                    </HBox>
+                                </VBox>
+                            </TitledPane>
+                            
+                            <!-- Botão para salvar preferências -->
+                            <Button text="Salvar Preferências" onAction="#handleSavePreferences" 
+                                    style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+    
+    <bottom>
+        <!-- Menu de Navegação Inferior -->
+        <HBox alignment="CENTER" spacing="40" style="-fx-padding: 15; -fx-background-color: #0a1525;">
+            <Button text="Biblioteca" onAction="#navigateToLibrary" 
+                    style="-fx-background-color: transparent; -fx-text-fill: #aaaaaa;"/>
+            <Button text="Explorar" onAction="#navigateToExplore" 
+                    style="-fx-background-color: transparent; -fx-text-fill: #aaaaaa;"/>
+            <Button text="Narradores" onAction="#navigateToNarrators" 
+                    style="-fx-background-color: transparent; -fx-text-fill: #aaaaaa;"/>
+            <Button text="Configurações" onAction="#navigateToSettings" 
+                    style="-fx-background-color: transparent; -fx-text-fill: #4CAF50;"/>
+        </HBox>
+    </bottom>
+    
+</BorderPane>

@@ -1,0 +1,75 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Set up GraalVM
+      uses: graalvm/setup-graalvm@v1
+      with:
+        version: '22.3.2'
+        java-version: '21'
+        components: 'native-image'
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        cache: 'gradle'
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+      with:
+        cmdline-tools-version: '9.0'
+
+    - name: Accept Android SDK Licenses
+      run: yes | sdkmanager --licenses
+
+    - name: Install Android SDK Components
+      run: |
+        sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.2"
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Cache Gradle packages
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    - name: Build APK with Gradle
+      run: ./gradlew nativeCompile android --info --stacktrace
+      env:
+        ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
+        JAVA_HOME: ${{ env.JAVA_HOME }}
+        GRAALVM_HOME: ${{ env.GRAALVM_HOME }}
+
+    - name: Upload Debug APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: NoxTales-debug
+        path: build/gluon/arm64-android/NoxTales.apk
+
+    - name: Upload Release APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: NoxTales-release
+        path: build/gluon/arm64-android/NoxTales.apk
