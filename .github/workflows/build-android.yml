@@ -62,14 +62,9 @@ jobs:
         JAVA_HOME: ${{ env.JAVA_HOME }}
         GRAALVM_HOME: ${{ env.GRAALVM_HOME }}
 
-    - name: Upload Debug APK
+    - name: Upload APK
       uses: actions/upload-artifact@v3
       with:
-        name: NoxTales-debug
-        path: build/gluon/arm64-android/NoxTales.apk
-
-    - name: Upload Release APK
-      uses: actions/upload-artifact@v3
-      with:
-        name: NoxTales-release
-        path: build/gluon/arm64-android/NoxTales.apk
+        name: NoxTales-APK
+        path: build/gluon/android/NoxTales.apk
+        if-no-files-found: error
